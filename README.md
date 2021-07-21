@@ -1,6 +1,6 @@
 # RestApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
+This project let's you to book a restaurant table in advance
 
 ## Development server
 
