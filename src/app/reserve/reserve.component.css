@@ -176,20 +176,20 @@
 
 @media only screen and (min-width: 992px)  {
     .itemOne {
-        flex-grow: 2;
+        flex: 2;
         margin-right: 48px;
     }
 }
 
 @media only screen and (max-width: 600px)  {
     .itemOne {
-        flex-grow: 2;
+        flex: 2;
     }
 }
 
 
     .itemTwo {
-        flex-grow: 2;
+        flex: 2;
     }
     
     .marginCss {

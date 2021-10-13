@@ -6,10 +6,11 @@ import { Reserve } from './reserve/reserve.component';
 import { History } from './history/history.component';
 
 const routes: Routes = [
+  {path: '', component: Booktable },
   {path: 'dashboard', component: Dashboard},
-{path: '', component: Booktable },
-{path: 'history', component: History },
-{path: 'reserve', component: Reserve }];
+  {path: 'history', component: History },
+  {path: 'reserve', component: Reserve }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
