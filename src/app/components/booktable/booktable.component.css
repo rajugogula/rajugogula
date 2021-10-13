@@ -125,6 +125,12 @@
     height: 40px;
     margin-right: 12px;
     width: 100%;
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.orderCostLabel {
+    margin-top: 24px !important;
 }
 
 .resetOrder {
@@ -145,6 +151,8 @@
     height: 40px;
     margin-right: 12px;
     width: 100%;
+    margin-top: 24px;
+    margin-bottom: 8px;
 }
 
 .reserve {

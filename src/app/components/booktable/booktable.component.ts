@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 
+import { TableDataService } from '../../../services/tableService';
+
 @Component({
   selector: 'book-table',
   templateUrl: './booktable.component.html',
-  styleUrls: ['./booktable.component.css']
+  styleUrls: ['./booktable.component.css'],
+  providers: [TableDataService]
 })
 export class Booktable  {
     tableData: any;
@@ -14,7 +17,15 @@ export class Booktable  {
     filterTables: any;
     filterargs: any;
 
-  constructor() {
+    tableResponse: any;
+
+  constructor(private tableServiceData: TableDataService) {
+    this.tableServiceData.getTables().subscribe(res => {
+        if(res) {
+        this.tableResponse = res;
+        }
+      });
+
     this.filterTables =[{
       name: 'All'
     },

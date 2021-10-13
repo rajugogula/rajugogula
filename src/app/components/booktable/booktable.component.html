@@ -14,37 +14,37 @@
 
     <div class="centered">
         <section class="cards">
-            <article class="card" *ngFor="let table of tableData | tableDataFilter:filterargs">
+            <article class="card" *ngFor="let table of tableResponse | tableDataFilter:filterargs">
                 <div class="tableRow">
-                    <span class="tableNumber">{{table.number}}</span>
+                    <span class="tableNumber">{{table.tableNumber}}</span>
                     <span
-                     [ngClass]="table.status ? 'tableStatusReserved' : 'tableStatusNR'"></span>
+                     [ngClass]="table.reservationStatus === 'Reserved' ? 'tableStatusReserved' : 'tableStatusNR'"></span>
                 </div>
-                    <div class="tableRow">seat: {{table.seat}}</div>
-                    <div class="tableRow" *ngIf="table.totalCost !== 0">
+                    <div class="tableRow orderCostLabel"><b>Order Cost:</b> Rs. {{table.cost}}</div>
+                    <div class="tableRow" *ngIf="false">
                         Total Cost: Rs. {{table.totalCost}}
                     </div>
                     <div class="tableAction">
                         <button
                         class="reserve"
                         routerLink="/reserve"
-                        (click)="reserveTable(table.number)"
-                        *ngIf="!table.status"
+                        (click)="reserveTable(table.tableNumber)"
+                        *ngIf="table.reservationStatus !== 'Reserved'"
                         >
                     Reserve
                 </button>
                 <button 
                 class="resetOrder"
-                *ngIf="table.status"
-                (click)="resetTable(table.number)"
+                *ngIf="table.reservationStatus === 'Reserved'"
+                (click)="resetTable(table.tableNumber)"
                 >
                 Reset
             </button>
             <button
             class="editOrder"
             routerLink="/reserve"
-            *ngIf="table.status"
-            (click)="reserveTable(table.number)"
+            *ngIf="table.reservationStatus === 'Reserved'"
+            (click)="reserveTable(table.tableNumber)"
             >
             Edit Order
         </button>
