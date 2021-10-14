@@ -94,7 +94,7 @@
 
 
 .available {
-    color: rgb(62, 255, 213);
+    color: #289358;
 }
 
 .booked {
@@ -194,7 +194,7 @@
     padding: 5px;
     text-align: center;
     display: inline-block;
-    background-color: rgb(19, 201, 152);
+    background-color: #289358;
     color: rgb(255, 255, 255);
 }
 

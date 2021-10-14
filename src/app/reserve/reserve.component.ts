@@ -96,7 +96,7 @@ export class Reserve {
         if (this.isEditOrder === 'true' && this.orderResponse) {
           this.reserveService.updateOrder(this.orderResponse._id, {
             orderItems: this.orderSummary,
-            ordercost: this.totalCost,
+            orderCost: this.totalCost,
             orderDateTime: requestBody.orderDateTime
           }).subscribe((res) => {
           if(res) {
