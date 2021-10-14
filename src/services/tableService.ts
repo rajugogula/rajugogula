@@ -12,4 +12,12 @@ export class TableDataService  {
     return this.http.get(`${this.base_url}/tables`).pipe(map(response => response));
   } 
 
+  getTableById(tableId) {
+    return this.http.get(`${this.base_url}/tables/${tableId}`).pipe(map(response => response));
+  } 
+
+ updateTableById(tableId, requestBody) {
+    return this.http.patch(`${this.base_url}/tables/${tableId}`, requestBody).pipe(map(response => response));
+  } 
+
 }

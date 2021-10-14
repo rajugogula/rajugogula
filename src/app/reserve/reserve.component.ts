@@ -1,24 +1,40 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ReserveDataService } from 'src/services/reserveService';
+import { TableDataService } from 'src/services/tableService';
 
 @Component({
   selector: 'reserve',
   templateUrl: './reserve.component.html',
-  styleUrls: ['./reserve.component.css']
+  styleUrls: ['./reserve.component.css'],
+  providers: [ReserveDataService, TableDataService]
 })
 export class Reserve {
 
   tableData: any;
   tableNumber: number;
+  tableId: string;
   orderSummary: any;
   totalCost: number;
+  toggleFlag: boolean = false;
+  tabIndex: number = 1;
+  items: any;
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, 
+    private reserveService: ReserveDataService,
+    private tableService: TableDataService
+  ) { 
 
-
+    //Get all the menu items
+    this.reserveService.getMenu().subscribe((res) => {
+      if(res) {
+        this.items = res[0]
+      }
+    });
 
     let data = localStorage.getItem('tableData');
     this.tableNumber = parseInt(localStorage.getItem('selectedTableNumber'));
+    this.tableId = localStorage.getItem('selectedTableId');
     this.tableData = JSON.parse(data);
 
     const filteredIndex = this.tableData.findIndex( x => x.number === this.tableNumber);
@@ -27,96 +43,6 @@ export class Reserve {
 
     this.totalCost = this.tableData[filteredIndex].totalCost !== 0 ? this.tableData[filteredIndex].totalCost : 0 ;
   }
-  toggleFlag: boolean = false;
-  tabIndex: number = 1;
-
-  items = {
-    biryanis: [{
-      name: 'Chicken Biryani Single',
-      cost: '120',
-      count: 0
-    },
-    {
-      name: 'Chicken Biryani Full',
-      cost: '240',
-      count: 0
-    },
-    {
-      name: 'Chicken Biryani Family',
-      cost: '440',
-      count: 0
-    },
-    {
-      name: 'Chicken Biryani Jumbo',
-      cost: '660',
-      count: 0
-    },
-    {
-      name: 'Chicken Manchow',
-      cost: '120',
-      count: 0
-    }],
-    soups: [{
-      name: 'Chicken Manchow',
-      cost: '120',
-      count: 0
-    }],
-    starters: [{
-      name: 'Chicken Tandoori',
-      cost: '120',
-      count: 0
-    },
-  {
-    name: 'Chicken Lollipop',
-      cost: '20',
-      count: 0
-  },
-{
-  name: 'Chilli Paneer',
-      cost: '135',
-      count: 0
-}],
-curries: [{
-      name: 'Kadai Checken',
-      cost: '220',
-      count: 0
-},
-{
-      name: 'Dal',
-      cost: '160',
-      count: 0
-},
-{
-      name: 'Chicken Kodi',
-      cost: '120',
-      count: 0
-}],
-drinks: [{
-      name: 'Maaza',
-      cost: '40',
-      count: 0
-},
-{
-      name: 'Sprite',
-      cost: '120',
-      count: 0
-}],
-rotis: [{
-      name: 'Tandoori Roti',
-      cost: '20',
-      count: 0
-},
-{
-      name: 'Rumali Roti',
-      cost: '12',
-      count: 0
-},
-{
-        name: 'Butter Nan',
-      cost: '10',
-      count: 0
-}]
-  };
 
   collapsableTab (index) {
     this.toggleFlag = !this.toggleFlag
@@ -150,29 +76,35 @@ rotis: [{
       this.totalCost = this.totalCost - parseInt(item.cost);
 
     }
-    else{
-
-    }
   }
      
       addOrderToTable () {
         if (this.totalCost === 0) return;
 
-        const filteredIndex = this.tableData.findIndex(x => x.number === this.tableNumber);
+        const requestBody = {
+          status: 'Reserved',
+          orderDateTime: new Date().toLocaleTimeString(),
+          tableNumber: this.tableNumber,
+          orderItems: this.orderSummary,
+          orderCost: this.totalCost
+        };
 
-        this.tableData[filteredIndex].bookedTime = new Date().toLocaleTimeString();
-        this.tableData[filteredIndex].totalCost = this.totalCost;
-        this.tableData[filteredIndex].status = true;
-        this.tableData[filteredIndex].orderSummary = this.orderSummary;
-
-        localStorage.setItem('tableData', JSON.stringify(this.tableData));
-        this.router.navigateByUrl('');
-        
+        this.reserveService.createNewOrder(requestBody).subscribe((res) => {
+          if(res) {
+            this.tableService.updateTableById(this.tableId, {
+              reservationStatus: requestBody.status,
+              totalCost: requestBody.orderCost
+            }).subscribe((res) => {
+              if (res) {
+                this.router.navigateByUrl('');
+              }
+            });
+          }
+        });
       }
 
       cancelOrder () {
         this.orderSummary = [],
         this.totalCost = 0;
       }
-
 }

@@ -32,7 +32,7 @@
 
      <div id="soup" class="hideElement" *ngIf="toggleFlag && (tabIndex === 2) ">
           <table class="tableCss">
-                <ng-container *ngFor="let row of items.drinks">
+                <ng-container *ngFor="let row of items.softdrinks">
                     <tr>
                           <td>{{row.name}}</td>
                          <td>Rs. {{row.cost}}</td>
@@ -68,13 +68,13 @@
         <!--rotis-->
         
       <div class="starters" (click)="collapsableTab(4)" [ngClass]="toggleFlag && (tabIndex === 4) ? 'tabActive' : 'tabInActive'">
-        <span> rotis</span>
+        <span>Breads</span>
         <span><i [ngClass]="toggleFlag && (tabIndex === 4) ? 'downA' : 'rightA'"></i></span>
      </div>
 
        <div id="soup" class="hideElement" *ngIf="toggleFlag && (tabIndex === 4) ">
            <table class="tableCss">
-               <ng-container *ngFor="let row of items.rotis">
+               <ng-container *ngFor="let row of items.breads">
                    <tr>
                        <td>{{row.name}}</td>
                        <td>Rs. {{row.cost}}</td>

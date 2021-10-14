@@ -47,8 +47,9 @@ export class Booktable  {
 
    }
 
-   reserveTable (number) {
-     localStorage.setItem('selectedTableNumber', number);
+   reserveTable (table) {
+     localStorage.setItem('selectedTableNumber', table.tableNumber);
+     localStorage.setItem('selectedTableId', table._id);
    }
 
    resetTable (number) {

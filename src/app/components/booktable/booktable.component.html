@@ -20,15 +20,12 @@
                     <span
                      [ngClass]="table.reservationStatus === 'Reserved' ? 'tableStatusReserved' : 'tableStatusNR'"></span>
                 </div>
-                    <div class="tableRow orderCostLabel"><b>Order Cost:</b> Rs. {{table.cost}}</div>
-                    <div class="tableRow" *ngIf="false">
-                        Total Cost: Rs. {{table.totalCost}}
-                    </div>
+                    <div class="tableRow orderCostLabel"><b>Order Cost:</b> Rs. {{table.totalCost}}</div>
                     <div class="tableAction">
                         <button
                         class="reserve"
                         routerLink="/reserve"
-                        (click)="reserveTable(table.tableNumber)"
+                        (click)="reserveTable(table)"
                         *ngIf="table.reservationStatus !== 'Reserved'"
                         >
                     Reserve
@@ -38,7 +35,7 @@
                 *ngIf="table.reservationStatus === 'Reserved'"
                 (click)="resetTable(table.tableNumber)"
                 >
-                Reset
+                Pay & Vacant
             </button>
             <button
             class="editOrder"
