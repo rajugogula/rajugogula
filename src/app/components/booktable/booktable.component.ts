@@ -23,10 +23,8 @@ export class Booktable  {
     this.tableServiceData.getTables().subscribe(res => {
         if(res) {
         this.tableResponse = res;
-        }
-      });
 
-    this.filterTables =[{
+         this.filterTables =[{
       name: 'All'
     },
     {
@@ -37,13 +35,15 @@ export class Booktable  {
     }];
 
     this.filterargs = this.filterTables[0];
-    //let data = localStorage.getItem('tableData');
-    //this.tableData = JSON.parse(data);
     this.totalTables = this.tableResponse ? this.tableResponse.length :0;
 
-    let bookedData = this.tableResponse.filter(x => x.reservationStatus);
+    let bookedData = this.tableResponse ? this.tableResponse.filter(x => x.reservationStatus === 'Reserved') : [];
     this.booked = bookedData.length;
     this.available = this.totalTables - this.booked;
+        }
+      });
+
+   
 
    }
 

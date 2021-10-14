@@ -1,10 +1,11 @@
-<div class="reserveContainer">
+<div class="reserveContainer" *ngIf="!!items">
     <div class="itemOne">
         <!-- soups-->
         <div
             class="starters"
          (click)="collapsableTab(1)"
           [ngClass]="toggleFlag && (tabIndex === 1) ? 'tabActive' : 'tabInActive'"
+          *ngIf="!!items && items.soups.length"
          >
              <span>Soups</span>
              <span><i [ngClass]="toggleFlag && (tabIndex === 1) ? 'downA' : 'rightA'"></i></span>
@@ -25,7 +26,8 @@
       </div>
      <!--soft drinks-->
       <div class="starters" (click)="collapsableTab(2)" 
-         [ngClass]="toggleFlag && (tabIndex === 2) ? 'tabActive' : 'tabInActive'">
+         [ngClass]="toggleFlag && (tabIndex === 2) ? 'tabActive' : 'tabInActive'"
+         *ngIf="!!items.softdrinks.length">
          <span>Soft Drinks</span>
          <span ><i [ngClass]="toggleFlag && (tabIndex === 2) ? 'downA' : 'rightA'"></i></span>
      </div>
@@ -45,7 +47,7 @@
           </table>
       </div>
       <!--starters-->
-      <div class="starters" (click)="collapsableTab(3)" [ngClass]="toggleFlag && (tabIndex === 3) ? 'tabActive' : 'tabInActive'">
+      <div class="starters" (click)="collapsableTab(3)" [ngClass]="toggleFlag && (tabIndex === 3) ? 'tabActive' : 'tabInActive'" *ngIf="!!items.starters.length">
          <span> Starters</span>
          <span><i [ngClass]="toggleFlag && (tabIndex === 3) ? 'downA' : 'rightA'"></i></span>
       </div>
@@ -67,7 +69,7 @@
         </div>
         <!--rotis-->
         
-      <div class="starters" (click)="collapsableTab(4)" [ngClass]="toggleFlag && (tabIndex === 4) ? 'tabActive' : 'tabInActive'">
+      <div class="starters" (click)="collapsableTab(4)" [ngClass]="toggleFlag && (tabIndex === 4) ? 'tabActive' : 'tabInActive'" *ngIf="!!items.breads.length">
         <span>Breads</span>
         <span><i [ngClass]="toggleFlag && (tabIndex === 4) ? 'downA' : 'rightA'"></i></span>
      </div>
@@ -88,7 +90,7 @@
       </div>
 
       <!--Curries-->
-      <div class="starters" (click)="collapsableTab(5)" [ngClass]="toggleFlag && (tabIndex === 5) ? 'tabActive' : 'tabInActive'">
+      <div class="starters" (click)="collapsableTab(5)" [ngClass]="toggleFlag && (tabIndex === 5) ? 'tabActive' : 'tabInActive'" *ngIf="!!items.curries.length">
         <span> Curries</span>
         <span><i [ngClass]="toggleFlag && (tabIndex === 5) ? 'downA' : 'rightA'"></i></span>
      </div>
@@ -108,7 +110,7 @@
            </table>
       </div>
         <!--Biryanis-->
-      <div class="starters" (click)="collapsableTab(6)" [ngClass]="toggleFlag && (tabIndex === 6) ? 'tabActive' : 'tabInActive'">
+      <div class="starters" (click)="collapsableTab(6)" [ngClass]="toggleFlag && (tabIndex === 6) ? 'tabActive' : 'tabInActive'" *ngIf="!!items.biryanis.length">
         <span> Biryanis</span>
         <span><i [ngClass]="toggleFlag && (tabIndex === 6) ? 'downA' : 'rightA'"></i></span>
      </div>

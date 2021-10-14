@@ -13,7 +13,7 @@ export class ReserveDataService  {
   }
 
   createNewOrder(requestBody: any) {
-    return this.http.post(`${this.base_url}/new-order`, requestBody).pipe(map(response => response));
+    return this.http.post(`${this.base_url}/orders/new-order`, requestBody).pipe(map(response => response));
   } 
 
 }
