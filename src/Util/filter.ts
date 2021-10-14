@@ -12,9 +12,9 @@ export class TableDataFilter implements PipeTransform {
              }
 
              if (filter.name === 'Available') {
-                 return items.filter(item => !item.status);
+                 return items.filter(item => !item.reservationStatus);
              } else if (filter.name === 'Reserved') {
-                return items.filter(item => item.status);
+                return items.filter(item => item.reservationStatus);
              }
              return items;
     }
