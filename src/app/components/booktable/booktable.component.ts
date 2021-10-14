@@ -42,42 +42,18 @@ export class Booktable  {
     this.available = this.totalTables - this.booked;
         }
       });
-
-   
-
    }
 
    reserveTable (table) {
+   const isEditOrder = table.reservationStatus === 'Reserved';
+   const orderResponse = table.orderResponse ? JSON.stringify(table.orderResponse) : '';
      localStorage.setItem('selectedTableNumber', table.tableNumber);
      localStorage.setItem('selectedTableId', table._id);
+     localStorage.setItem('isEditOrder', isEditOrder.toString());
+     localStorage.setItem('orderResponse', orderResponse);
    }
 
    resetTable (number) {
-
-    //  const filteredIndex =this.tableData.findIndex(x => x.number === number);
-
-    //  const savedHistory = JSON.parse(localStorage.getItem('history'));
-
-    //  const currentHistory = [{
-    //   date: new Date().toLocaleDateString(),
-    //   bookedTime: this.tableData[filteredIndex].bookedTime,
-    //   vacatedTime: new Date().toLocaleTimeString(),
-    //   tableNumber: localStorage.getItem('selectedTableNumber'),
-    //   cost: this.tableData[filteredIndex].totalCost,
-    //  }];
-
-    //  const history = savedHistory ? savedHistory.concat(currentHistory) : currentHistory;
-    //  this.tableData[filteredIndex].totalCost = 0;
-    //  this.tableData[filteredIndex].status = false;
-    //  this.tableData[filteredIndex].orderSummary =[];
-
-
-
-    //  let bookedData = this.tableData.filter(x => x.status);
-    //  this.booked = bookedData.length;
-    //  this.available = this.totalTables - this.booked;
-    //  localStorage.setItem('tableData', JSON.stringify(this.tableData));
-    //  localStorage.setItem('history', JSON.stringify(history));
      
    }
     

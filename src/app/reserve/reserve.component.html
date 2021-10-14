@@ -142,7 +142,7 @@
                         <td>Rs. {{order.cost}} <span *ngIf="order.count !== 0"> X ({{order.count}})</span></td>
                     </tr>
                 </ng-container>
-                <tr class="totalCSS">
+                <tr class="totalCSS" *ngIf="!!totalCost">
                     <td *ngIf="totalCost !== 0 ">Total</td>
                     <td *ngIf="totalCost !== 0 ">Rs. {{totalCost}}</td>
                 </tr>

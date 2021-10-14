@@ -16,4 +16,8 @@ export class ReserveDataService  {
     return this.http.post(`${this.base_url}/orders/new-order`, requestBody).pipe(map(response => response));
   } 
 
+  updateOrder(id: any, requestBody: any) {
+    return this.http.patch(`${this.base_url}/orders/${id}`, requestBody).pipe(map(response => response));
+  } 
+
 }

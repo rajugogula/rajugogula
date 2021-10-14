@@ -41,7 +41,7 @@
             class="editOrder"
             routerLink="/reserve"
             *ngIf="table.reservationStatus === 'Reserved'"
-            (click)="reserveTable(table.tableNumber)"
+            (click)="reserveTable(table)"
             >
             Edit Order
         </button>
